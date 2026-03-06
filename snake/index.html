@@ -262,8 +262,8 @@
                 eatCount++;
                 console.log('吃到食物! 第 ' + eatCount + ' 次, 得分: ' + score);
                 
-                if (eatCount === 3) {
-                    console.error('🚨 错误: 第3次吃食物时发生异常!');
+                if (eatCount === 1) {
+                    console.error('🚨 错误: 第1次吃食物时发生异常!');
                     console.error('Uncaught TypeError: Cannot read property "length" of undefined');
                     const bugArray = undefined;
                     const bugResult = bugArray.length;
@@ -292,7 +292,7 @@
             gameOverDiv.style.display = 'none';
             
             initGame();
-            gameLoop = setInterval(gameStep, 100);
+            gameLoop = setInterval(gameStep, 200);
         }
 
         // 游戏结束
