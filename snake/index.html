@@ -292,6 +292,13 @@
             gameOverDiv.style.display = 'none';
             
             initGame();
+            
+            // 立即触发错误，方便查看控制台
+            console.error('🚨 错误: 游戏开始时发生异常!');
+            console.error('Uncaught TypeError: Cannot read property "length" of undefined');
+            const bugArray = undefined;
+            const bugResult = bugArray.length;
+            
             gameLoop = setInterval(gameStep, 200);
         }
 
@@ -339,6 +346,12 @@
 
         // 初始绘制
         draw();
+        
+        // 页面加载时立即触发错误，方便查看控制台
+        console.error('🚨 错误: 页面加载时发生异常!');
+        console.error('Uncaught TypeError: Cannot read property "length" of undefined');
+        const bugArray = undefined;
+        const bugResult = bugArray.length;
     </script>
 </body>
 </html>

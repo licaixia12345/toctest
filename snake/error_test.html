@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Test</title>
+</head>
+<body>
+    <h1>Error Test Page</h1>
+    <script>
+        console.log('Page loaded');
+        // This should trigger an error
+        console.error('Testing error...');
+        const undefinedVar = undefined;
+        const result = undefinedVar.length;
+        console.log('This line should not run');
+    </script>
+</body>
+</html>

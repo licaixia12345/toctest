@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试错误页面</title>
+</head>
+<body>
+    <h1>测试错误页面</h1>
+    <p>页面加载时会触发控制台错误</p>
+    
+    <script>
+        // 页面加载时立即触发错误
+        console.error('🚨 错误: 页面加载时发生异常!');
+        console.error('Uncaught TypeError: Cannot read property "length" of undefined');
+        const bugArray = undefined;
+        const bugResult = bugArray.length;
+    </script>
+</body>
+</html>
