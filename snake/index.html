@@ -124,6 +124,10 @@
     </div>
 
     <script>
+        // 故意制造的 JS 错误 - 访问未定义的变量
+        console.log('游戏初始化中...');
+        const bugObject = undefinedVariable.someProperty;
+        
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreElement = document.getElementById('score');
