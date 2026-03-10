@@ -42,7 +42,7 @@
   - `human-judgment` TR-3.3: 界面美观，用户体验良好
 - **Notes**: 确保结果展示界面响应式，适配不同屏幕尺寸
 
-## [/] Task 4: 实现API接口
+## [x] Task 4: 实现API接口
 - **Priority**: P1
 - **Depends On**: Task 2
 - **Description**:
@@ -56,7 +56,7 @@
   - `programmatic` TR-4.3: API接口能够正确处理错误情况
 - **Notes**: 确保API接口设计符合RESTful规范
 
-## [ ] Task 5: 测试和优化
+## [/] Task 5: 测试和优化
 - **Priority**: P2
 - **Depends On**: Task 3, Task 4
 - **Description**:

@@ -124,7 +124,7 @@ export default function RecognitionResult({
                 {Object.entries(features).map(([key, value]) => (
                   <li key={key} className="flex items-center">
                     <span className="text-sm font-medium text-gray-700 mr-2">{key}:</span>
-                    <span className="text-sm text-gray-600">{value}</span>
+                    <span className="text-sm text-gray-600">{String(value)}</span>
                   </li>
                 ))}
               </ul>
