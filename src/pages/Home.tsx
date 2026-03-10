@@ -1,16 +1,26 @@
 import { useState, useEffect } from 'react'
 import { ArrowDown, Mail, Github, Linkedin, Twitter, ExternalLink, Menu, X } from 'lucide-react'
+import ImageUpload from '@/components/ImageUpload'
+import RecognitionResult from '@/components/RecognitionResult'
+import { ImageRecognitionResult } from '@/services/imageRecognition'
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0)
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [recognitionResult, setRecognitionResult] = useState<ImageRecognitionResult | null>(null)
+
+  const handleImageUpload = (image: string | File) => {
+    console.log('Image uploaded:', image)
+  }
+
+  const handleImageTypeIdentified = (result: ImageRecognitionResult) => {
+    console.log('Image type identified:', result)
+    setRecognitionResult(result)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-      
-      const sections = ['home', 'about', 'projects', 'contact']
+      const sections = ['home', 'about', 'projects', 'image-upload', 'contact']
       const current = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
@@ -67,7 +77,7 @@ export default function Home() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'projects', 'contact'].map((section) => (
+              {['home', 'about', 'projects', 'image-upload', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -77,7 +87,8 @@ export default function Home() {
                 >
                   {section === 'home' ? '首页' : 
                    section === 'about' ? '关于' :
-                   section === 'projects' ? '项目' : '联系'}
+                   section === 'projects' ? '项目' :
+                   section === 'image-upload' ? '图片上传' : '联系'}
                 </button>
               ))}
             </div>
@@ -95,7 +106,7 @@ export default function Home() {
           {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t border-gray-100">
               <div className="flex flex-col space-y-4 pt-4">
-                {['home', 'about', 'projects', 'contact'].map((section) => (
+                {['home', 'about', 'projects', 'image-upload', 'contact'].map((section) => (
                   <button
                     key={section}
                     onClick={() => {
@@ -108,7 +119,8 @@ export default function Home() {
                   >
                     {section === 'home' ? '首页' : 
                      section === 'about' ? '关于' :
-                     section === 'projects' ? '项目' : '联系'}
+                     section === 'projects' ? '项目' :
+                     section === 'image-upload' ? '图片上传' : '联系'}
                   </button>
                 ))}
               </div>
@@ -222,6 +234,34 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Image Upload Section */}
+      <section id="image-upload" className="py-20 md:py-32 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light mb-4 text-gray-900">图片上传与识别</h2>
+            <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto">
+              上传本地图片或输入图片URL，系统会自动识别图片类型
+            </p>
+          </div>
+          
+          <ImageUpload 
+            onImageUpload={handleImageUpload}
+            onImageTypeIdentified={handleImageTypeIdentified}
+          />
+          
+          {/* 识别结果展示 */}
+          {recognitionResult && (
+            <div className="mt-8">
+              <RecognitionResult 
+                imageType={recognitionResult.type}
+                confidence={recognitionResult.confidence}
+                features={recognitionResult.details}
+              />
+            </div>
+          )}
         </div>
       </section>
 
